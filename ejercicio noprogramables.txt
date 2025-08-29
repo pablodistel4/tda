@@ -1,0 +1,95 @@
+ej 10
+
+
+distanciamaxima (raiz: Nodo )-> Int:
+
+if raiz==null: return 0
+
+else: 
+    distanciaizq= distanciamaxima (raiz.izq)
+    distancider= distanciamaxima (raiz.der) 
+
+    altura = 1+ maximo(distanciaizq, distancider)
+
+    return altura
+
+
+ej 11 es mergesort pero modifiaco (ver chatgpt)
+
+
+
+ej 12 
+
+
+buscadordefalsos (a:list[list[Bool]], inicioi: Int, Inicioj: Int, Fini: Int, Finj:Int )-> (Int,Int)
+
+    if (finj-inicioj=0) 
+        return (inicioi,inicioj)
+
+    else:
+
+    mitadi= (inicioi+fini)//2
+
+    mitadj=(inicioj+finj)//2
+
+
+    if conjuncionSubmatriz(inicioi, mitadi, inicioj, mitadj)==False:
+        return buscadordefalsos(a,inicioi, mitadi, inicioj, mitadj)
+
+    elif conjuncionSubmatriz(inicioi, mitadi, mitadj, finj)==False:
+        return buscadordefalsos(a,inicioi, mitadi,  mitadj, finj)
+
+    elif conjuncionSubmatriz(mitadi, Fini, inicioj, mitadj)==False:
+        return buscadordefalsos(a,mitadi, Fini, inicioj, mitadj)
+    
+    elif conjuncionSubmatriz(mitadi, Fini, mitadj, Finj)==False:
+        return buscadordefalsos(a,mitadi, Fini, inicioj, mitadj)
+
+    else: return error
+
+
+
+sumadordefalso (a:list[list[Bool]], inicioi: Int, Inicioj: Int, Fini: Int, Finj:Int )-> Int
+
+    if (finj-inicioj=0) 
+        if a[inicioi] [inicioj]==True : return 1
+        else: return 0
+
+    else:
+
+    mitadi= (inicioi+fini)//2
+
+    mitadj=(inicioj+finj)//2
+
+    porcion1:int=0
+    porcion2:int=0
+    porcion3:int=0
+    porcion4:int=0
+    if conjuncionSubmatriz(inicioi, mitadi, inicioj, mitadj)==False:
+        porcion1=sumadordefalso(a,inicioi, mitadi, inicioj, mitadj)
+
+    if conjuncionSubmatriz(inicioi, mitadi, inicioj, mitadj)==True:
+        porcion1=0  
+
+    if conjuncionSubmatriz(inicioi, mitadi, mitadj, finj)==False:
+        porcion2= sumadordefalso(a,inicioi, mitadi,  mitadj, finj)
+
+    if conjuncionSubmatriz(inicioi, mitadi, mitadj, finj)==True:
+        porcion2= 0
+
+    if conjuncionSubmatriz(mitadi, Fini, inicioj, mitadj)==False:
+        porcion3=  sumadordefalso(a,mitadi, Fini, inicioj, mitadj)
+    
+    if conjuncionSubmatriz(mitadi, Fini, inicioj, mitadj)==True:
+        porcion3=  0
+    
+    if conjuncionSubmatriz(mitadi, Fini, mitadj, Finj)==False:
+        porcion4 = sumadordefalso(a,mitadi, Fini, inicioj, mitadj)
+    
+    if conjuncionSubmatriz(mitadi, Fini, mitadj, Finj)==True:
+    porcion4 = 0
+    
+
+    return porcion1+porcion2+porcion3+porcion4
+
+    

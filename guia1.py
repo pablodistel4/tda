@@ -73,9 +73,9 @@ def potencialogaritimica(a:int, b: int)-> int:
         return v
     
     elif (b%2==0): 
-        v:int = potencialogaritimica(a,b//2) * potencialogaritimica(a,b//2)
-        print (v)
-        return v
+        v:int = potencialogaritimica(a,b//2)
+        print (v*v)
+        return v*v
         
     else: 
         v:int=a* potencialogaritimica(a,b-1)
@@ -87,9 +87,9 @@ def potencialogaritimica(a:int, b: int)-> int:
 #ej 6
 
 
-def maximomontania(a:list[int])->int:
-    if len(a)==1: return a[0]
-    medio:int=len(a)//2
+def maximomontania(a:list[int],inicio:int, fin:int)->int:
+    if fin==inicio: return a[inicio]
+    medio:int=(inicio+fin)//2
 
 
     if (a[medio]>a[medio+1] and a[medio]>a[medio-1]):
@@ -97,18 +97,23 @@ def maximomontania(a:list[int])->int:
         return a[medio]
 
     elif (a[medio]>a[medio+1] and a[medio]<a[medio-1]): 
-        suba: list[int]= a[0:medio:1]
+        fin=medio-1
+        #suba: list[int]= a[0:medio:1]
 
     elif (a[medio]<a[medio+1] and a[medio]>a[medio-1]):
-        suba: list[int]= a[medio:len(a):1]
+        inicio=medio+1
+        #suba: list[int]= a[medio:len(a):1]
 
      
-    return maximomontania(suba)
+    return maximomontania(a,inicio,fin)
 
 
 l1=  [ - 1, 3, 8, 22, 30, 22, 8, 4, 2, 1]
 
-maximomontania(l1)
+maximomontania(l1,0,len (l1)-1)
 
 
 #rehacer usando indices
+
+
+
