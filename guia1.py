@@ -113,7 +113,7 @@ l1=  [ - 1, 3, 8, 22, 30, 22, 8, 4, 2, 1]
 maximomontania(l1,0,len (l1)-1)
 
 
-#rehacer usando indices
 
+    
 
 
