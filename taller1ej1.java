@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main{
+public class taller1ej1{
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
         int t = sc.nextInt();
@@ -46,30 +46,30 @@ public class Main{
 
         
 
-        int mitad= (inicio+fin+1)/2;
+        int mitad=inicio+(fin-inicio)/2;
         char sig= (char) (letra+1);
-        int[] letraenizq=cantletras(arreglo,letra,sig,inicio,mitad-1);
-        int[] letrader= cantletras(arreglo,letra,sig,mitad,fin);
+        int distintasizq=cantletrasdistintas(arreglo,letra,inicio,mitad);
+        int distintasder= cantletrasdistintas(arreglo,letra,mitad+1,fin);
         
         //imprimirsubsecuencia(arreglo,inicio,fin);
-        if (letraenizq[0]>letrader[0] /* || (letraenizq[0]==letrader[0] && letraenizq[1]<=letrader[1]) */){
-            cambiosenizq= (mitad-1-inicio+1) - letraenizq[0];
-            cambiosender= hacerlindo(arreglo,sig,mitad,fin);
+        if (distintasizq<distintasder /* || (distintasizq[0]==distintasder[0] && distintasizq[1]<=distintasder[1]) */){
+            cambiosenizq= distintasizq;
+            cambiosender= hacerlindo(arreglo,sig,mitad+1,fin);
         }
-        if (letraenizq[0]<letrader[0] /*|| (letraenizq[0]==letrader[0] && letraenizq[1]>letrader[1])*/){
-            cambiosenizq= hacerlindo(arreglo,sig,inicio,mitad-1);
-            cambiosender= (fin-mitad+1)- letrader[0];
+        if (distintasizq>distintasder /*|| (distintasizq[0]==distintasder[0] && distintasizq[1]>distintasder[1])*/){
+            cambiosenizq= hacerlindo(arreglo,sig,inicio,mitad);
+            cambiosender= distintasder;
         }
-        if (letraenizq[0]==letrader[0]){
-            int semicambiosenziq= hacerlindo(arreglo,sig,inicio,mitad-1);
-            int semicambiosender= hacerlindo(arreglo,sig,mitad,fin);
+        if (distintasizq==distintasder){
+            int semicambiosenziq= hacerlindo(arreglo,sig,inicio,mitad);
+            int semicambiosender= hacerlindo(arreglo,sig,mitad+1,fin);
 
             if (semicambiosender>=semicambiosenziq){
                 cambiosenizq= semicambiosenziq;
-                cambiosender= (fin-mitad+1)- letrader[0];
+                cambiosender= distintasder;
             }
             if (semicambiosender<semicambiosenziq){
-                cambiosenizq= (mitad-1-inicio+1)- letraenizq[0];
+                cambiosenizq= distintasizq;
                 cambiosender= semicambiosender;
             }
         }
@@ -84,24 +84,17 @@ public class Main{
 
         
     }
-    public static int[] cantletras(String arreglo,char letra,char sig ,int inicio, int fin){
-        int[] res={0,0};
+    public static int cantletrasdistintas(String arreglo,char letra,int inicio, int fin){
+        //int[] res={0,0};
         //char[] letrasdistintas= new char[arreglo.length()];
         //int nuevoelem=0;
-
+        int res=0;
         for (int i= inicio;i<=fin;i++){
             char nletra= arreglo.charAt(i);
-            if (nletra==letra){
-                res[0]+=1;
+            if (nletra!=letra){
+                res+=1;
             }
 
-            if (nletra==sig /*&& pertenece(nletra,letrasdistintas)==false*/){
-                res[1]+=1;
-                //letrasdistintas[nuevoelem]=nletra;
-                //nuevoelem++;
-
-
-            }
 
         }
         return res;
