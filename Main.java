@@ -53,7 +53,7 @@ public class Main{
         
         //imprimirsubsecuencia(arreglo,inicio,fin);
         if (letraenizq[0]>letrader[0] /* || (letraenizq[0]==letrader[0] && letraenizq[1]<=letrader[1]) */){
-            cambiosenizq= (mitad-1-inicio+1)- letraenizq[0];
+            cambiosenizq= - letraenizq[0];
             cambiosender= hacerlindo(arreglo,sig,mitad,fin);
         }
         if (letraenizq[0]<letrader[0] /*|| (letraenizq[0]==letrader[0] && letraenizq[1]>letrader[1])*/){
