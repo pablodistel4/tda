@@ -35,7 +35,7 @@ public class taller1ej1{
     }
 
     public static int hacerlindo(String arreglo,char letra, int inicio, int fin){
-        if (fin-inicio==0 && arreglo.charAt(inicio)==letra){
+        if (fin==inicio && arreglo.charAt(inicio)==letra){
             return 0;
         }
         else if (fin-inicio==0 && arreglo.charAt(inicio)!=letra){
@@ -61,17 +61,30 @@ public class taller1ej1{
             cambiosender= distintasder;
         }
         if (distintasizq==distintasder){
-            int semicambiosenziq= hacerlindo(arreglo,sig,inicio,mitad);
-            int semicambiosender= hacerlindo(arreglo,sig,mitad+1,fin);
+            //caso 1: hago blindo izq
 
-            if (semicambiosender>=semicambiosenziq){
-                cambiosenizq= semicambiosenziq;
+            int semicambiosenziq1= hacerlindo(arreglo,sig,inicio,mitad);
+            int semicambiosender1= distintasder;
+            //caso 2: hago blindo der
+            int semicambiosender2= hacerlindo(arreglo,sig,mitad+1,fin);
+            int semicambiosenziq2= distintasizq;
+
+            if (semicambiosender1+semicambiosenziq1>=semicambiosender2+semicambiosenziq2){
+                cambiosenizq= distintasizq;
+                cambiosender=semicambiosender2;
+            }
+            else{
+                cambiosenizq=hacerlindo(arreglo,sig,inicio,mitad);
                 cambiosender= distintasder;
             }
-            if (semicambiosender<semicambiosenziq){
-                cambiosenizq= distintasizq;
-                cambiosender= semicambiosender;
-            }
+            // if (semicambiosender>=semicambiosenziq){
+            //     cambiosenizq= semicambiosenziq;
+            //     cambiosender= distintasder;
+            // }
+            // if (semicambiosender<semicambiosenziq){
+            //     cambiosenizq= distintasizq;
+            //     cambiosender= semicambiosender;
+            // }
         }
         
  
